@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1A1B20">
+<title>Bisaya Toolkit Rewards</title>
+<style>
+:root{--bg:#1A1B20;--card:#202127;--inner:#17181C;--line:#34363B;--green:#7CCB69;--green2:#91DA7B;--text:#fff;--muted:#A7A9AE}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+body{min-height:100vh;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+.app{width:min(760px,100%);margin:auto;padding:14px 14px 34px}
+.hero,.card{background:var(--card);border:1px solid #2E3036;border-radius:18px;padding:16px;margin-bottom:12px}
+.hero{padding:20px;border-radius:22px;background:radial-gradient(circle at 100% 0%,rgba(124,203,105,.18),transparent 38%),linear-gradient(145deg,#202127,#1B1C21)}
+.kicker{font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--green)}
+h1{font-size:28px;line-height:1.05;margin:8px 0}
+h2{font-size:17px;margin:0 0 10px}
+p{font-size:13px;color:#B8BBC1;line-height:1.6;margin:0}
+.rewards,.choices,.tabs{display:flex;gap:8px;margin-top:14px}
+.chip,.choice,.tab{flex:1;border:1px solid var(--line);background:var(--inner);border-radius:12px;text-align:center}
+.chip{padding:11px 8px;font-size:12px;font-weight:700}
+.choice,.tab{height:42px;color:var(--muted);font-size:12px;font-weight:700}
+.choice.active,.tab.active{border-color:var(--green);background:#243624;color:var(--green)}
+.status{margin-top:14px;font-size:11px;color:var(--muted);display:flex;align-items:center;gap:8px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--green)}
+.rules{padding-left:19px;margin:0;color:#C5C7CC;font-size:12px;line-height:1.75}
+.link{display:inline-block;margin-top:12px;color:var(--green);font-size:12px;font-weight:700;text-decoration:none}
+.label{display:block;color:#8E9198;font-size:11px;margin:12px 0 7px}
+.field{width:100%;height:48px;border:1px solid #3B3D44;border-radius:13px;background:var(--inner);color:#fff;padding:0 13px;outline:none;font-size:13px}
+.field:focus{border-color:var(--green)}
+.note{font-size:10px;color:#7F8289;line-height:1.55;margin-top:9px}
+.primary{width:100%;height:49px;border:0;border-radius:14px;margin-top:14px;background:linear-gradient(135deg,var(--green2),var(--green));color:#10120F;font-weight:900;font-size:13px}
+.head{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.count{font-size:10px;color:var(--green)}
+.empty{margin-top:10px;border:1px dashed #3A3C42;background:var(--inner);border-radius:14px;padding:22px 14px;text-align:center;color:#858890;font-size:12px;line-height:1.6}
+.entry,.rankrow{background:var(--inner);border:1px solid #32343A;border-radius:13px;padding:12px;margin-top:8px}
+.entrytop{display:flex;justify-content:space-between;gap:8px}
+.user{font-size:13px;font-weight:800}.type{font-size:10px;color:var(--green);margin-top:3px}.meta{font-size:10px;color:#74777D;margin-top:8px}
+.badge{padding:5px 8px;border-radius:999px;font-size:9px;font-weight:900;text-transform:uppercase}.pending{background:#372F19;color:#F4C95D}.approved{background:#203722;color:var(--green2)}.rejected{background:#3A2020;color:#FF8A8A}
+.rankrow{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center}.rank{width:30px;height:30px;border-radius:50%;background:#25272D;color:var(--green);display:grid;place-items:center;font-size:11px;font-weight:900}
+.hidden{display:none!important}.footer{text-align:center;color:#5F6268;font-size:9px;margin-top:16px}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);opacity:0;background:#111216;border:1px solid #34363B;border-radius:12px;padding:11px 14px;font-size:11px;transition:.2s;max-width:calc(100% - 28px);z-index:99}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<div class="app">
+<section class="hero">
+  <div class="kicker">BISAYA TOOLKIT REWARDS</div>
+  <h1 id="eventTitle">Create. Post. Win.</h1>
+  <p id="eventDescription">Show your Custom Skin or Meme Skin on TikTok, add <b>#bisayatoolkit</b>, then submit your video link here.</p>
+  <div class="rewards">
+    <div class="chip">💎 <span id="diamondReward">Diamonds</span></div>
+    <div class="chip">₱ <span id="cashReward">Cash Rewards</span></div>
+  </div>
+  <div class="status"><span class="dot"></span><span id="eventStatus">Event is active</span></div>
+</section>
+
+<section class="card">
+  <h2>How to Join</h2>
+  <ol class="rules">
+    <li>Use a Custom Skin or Meme Skin from Bisaya Toolkit.</li>
+    <li>Create and upload a public TikTok video.</li>
+    <li>Add <b>#bisayatoolkit</b> to the caption.</li>
+    <li>Submit your TikTok video link below.</li>
+    <li>Approved entries become eligible for rewards.</li>
+  </ol>
+  <a class="link" href="https://www.tiktok.com/tag/bisayatoolkit" target="_blank">View #bisayatoolkit on TikTok ›</a>
+</section>
+
+<section class="card" id="submitCard">
+  <h2>Submit Your Entry</h2>
+  <span class="label">Content used</span>
+  <div class="choices">
+    <button class="choice active" data-type="Custom Skin">Custom Skin</button>
+    <button class="choice" data-type="Meme Skin">Meme Skin</button>
+  </div>
+  <span class="label">TikTok username</span>
+  <input id="username" class="field" placeholder="Username without @">
+  <span class="label">TikTok video link</span>
+  <input id="videoUrl" class="field" placeholder="https://www.tiktok.com/@user/video/..." inputmode="url">
+  <div class="note">By submitting, you confirm that the video is public and its caption includes <b>#bisayatoolkit</b>. Entries may be manually reviewed before approval.</div>
+  <button id="submitBtn" class="primary">SUBMIT ENTRY</button>
+</section>
+
+<section class="card">
+  <div class="head"><h2 style="margin:0">Entries</h2><span id="entryCount" class="count">0 submissions</span></div>
+  <div class="tabs">
+    <button class="tab active" data-tab="mine">My Submissions</button>
+    <button class="tab" data-tab="leaderboard">Leaderboard</button>
+  </div>
+  <div id="minePanel"></div>
+  <div id="leaderboardPanel" class="hidden"></div>
+</section>
+
+<div class="footer">Bisaya Toolkit • Rewards Event</div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+// Edit these values online anytime. No app update is needed.
+const CONFIG = {
+  enabled: true,
+  eventTitle: "Create. Post. Win.",
+  eventDescription: "Show your Custom Skin or Meme Skin on TikTok, add #bisayatoolkit, then submit your video link here.",
+  diamondReward: "Diamonds",
+  cashReward: "Cash Rewards",
+  requiredHashtag: "#bisayatoolkit",
+  submitApi: "",
+  leaderboardApi: ""
+};
+
+const STORAGE_KEY="bisaya_toolkit_rewards_submissions_v1";
+let selectedType="Custom Skin";
+const $=id=>document.getElementById(id);
+
+function showToast(msg){
+  const t=$("toast");t.textContent=msg;t.classList.add("show");
+  clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>t.classList.remove("show"),2200);
+}
+function cleanUser(v){return (v||"").trim().replace(/^@+/,"")}
+function validTikTok(v){
+  try{
+    const h=new URL((v||"").trim()).hostname.toLowerCase();
+    return h==="tiktok.com"||h.endsWith(".tiktok.com")||h==="vm.tiktok.com"||h==="vt.tiktok.com";
+  }catch(e){return false}
+}
+function entries(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||"[]")}catch(e){return []}}
+function saveEntries(v){localStorage.setItem(STORAGE_KEY,JSON.stringify(v))}
+function esc(v){return String(v??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
+function date(v){try{return new Date(v).toLocaleString([], {month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})}catch(e){return""}}
+function badge(v){v=(v||"pending").toLowerCase();return v==="approved"?"approved":v==="rejected"?"rejected":"pending"}
+
+function applyConfig(){
+  $("eventTitle").textContent=CONFIG.eventTitle;
+  $("eventDescription").textContent=CONFIG.eventDescription;
+  $("diamondReward").textContent=CONFIG.diamondReward;
+  $("cashReward").textContent=CONFIG.cashReward;
+  $("eventStatus").textContent=CONFIG.enabled?"Event is active":"Event is currently closed";
+  $("submitCard").classList.toggle("hidden",!CONFIG.enabled);
+}
+
+function renderMine(){
+  const list=entries().slice().reverse();
+  $("entryCount").textContent=list.length+(list.length===1?" submission":" submissions");
+  if(!list.length){$("minePanel").innerHTML='<div class="empty">No submissions yet.<br>Your pending entries will appear here.</div>';return}
+  $("minePanel").innerHTML=list.map(x=>`
+    <div class="entry">
+      <div class="entrytop">
+        <div><div class="user">@${esc(x.tiktok_username)}</div><div class="type">${esc(x.content_type)}</div></div>
+        <span class="badge ${badge(x.status)}">${esc(x.status||"pending")}</span>
+      </div>
+      <div class="meta">${esc(x.submission_id)} • ${esc(date(x.submitted_at))}</div>
+      <a class="link" href="${esc(x.tiktok_url)}" target="_blank">Open TikTok video ›</a>
+    </div>`).join("");
+}
+
+function renderLeaderboard(list=[]){
+  if(!list.length){$("leaderboardPanel").innerHTML='<div class="empty">No approved leaderboard entries yet.<br>Winners and top entries will appear here.</div>';return}
+  $("leaderboardPanel").innerHTML=list.map((x,i)=>`
+    <div class="rankrow">
+      <div class="rank">${i+1}</div>
+      <div><div class="user">@${esc(x.tiktok_username||"participant")}</div><div class="type">${esc(x.content_type||"Entry")}</div></div>
+      <div class="type">${esc(x.score||x.views||"Approved")}</div>
+    </div>`).join("");
+}
+
+async function loadLeaderboard(){
+  if(!CONFIG.leaderboardApi){renderLeaderboard();return}
+  try{
+    const r=await fetch(CONFIG.leaderboardApi,{cache:"no-store"});
+    if(!r.ok)throw new Error();
+    const j=await r.json();renderLeaderboard(Array.isArray(j)?j:(j.entries||[]));
+  }catch(e){renderLeaderboard()}
+}
+
+async function submit(){
+  if(!CONFIG.enabled){showToast("This rewards event is currently closed.");return}
+  const user=cleanUser($("username").value),url=$("videoUrl").value.trim();
+  if(!user){showToast("Enter your TikTok username.");$("username").focus();return}
+  if(!validTikTok(url)){showToast("Enter a valid TikTok video link.");$("videoUrl").focus();return}
+  const item={
+    submission_id:"BTK-"+Date.now(),
+    event_id:"bisayatoolkit_tiktok_rewards",
+    tiktok_username:user,
+    tiktok_url:url,
+    content_type:selectedType,
+    required_hashtag:CONFIG.requiredHashtag,
+    status:"pending",
+    submitted_at:Date.now()
+  };
+  $("submitBtn").disabled=true;$("submitBtn").textContent="SUBMITTING...";
+  try{
+    if(CONFIG.submitApi){
+      const r=await fetch(CONFIG.submitApi,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(item)});
+      if(!r.ok)throw new Error();
+      const j=await r.json().catch(()=>({}));
+      if(j.submission_id)item.submission_id=j.submission_id;
+    }
+    const list=entries();list.push(item);saveEntries(list);
+    $("videoUrl").value="";renderMine();showToast("Entry submitted. Status: Pending");
+  }catch(e){showToast("Unable to submit right now. Please try again.")}
+  finally{$("submitBtn").disabled=false;$("submitBtn").textContent="SUBMIT ENTRY"}
+}
+
+document.querySelectorAll(".choice").forEach(b=>b.onclick=()=>{
+  selectedType=b.dataset.type;
+  document.querySelectorAll(".choice").forEach(x=>x.classList.remove("active"));
+  b.classList.add("active");
+});
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));b.classList.add("active");
+  const lb=b.dataset.tab==="leaderboard";
+  $("minePanel").classList.toggle("hidden",lb);$("leaderboardPanel").classList.toggle("hidden",!lb);
+  if(lb)loadLeaderboard();
+});
+$("submitBtn").onclick=submit;
+
+applyConfig();renderMine();renderLeaderboard();
+</script>
+</body>
+</html>
